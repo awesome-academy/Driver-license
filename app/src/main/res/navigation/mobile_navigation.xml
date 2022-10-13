@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_main">
+
+    <fragment
+        android:id="@+id/nav_main"
+        android:name="com.nguyennhatminh614.motobikedriverlicenseapp.screen.mainscreen.MainFragment"
+        android:label="@string/nav_header_title"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_nav_main_to_nav_tips_high_score"
+            app:destination="@id/nav_tips_high_score"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_nav_main_to_nav_wrong_answer"
+            app:destination="@id/nav_wrong_answer"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_nav_main_to_nav_exam"
+            app:destination="@id/nav_exam"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_nav_main_to_nav_settings"
+            app:destination="@id/nav_settings"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_nav_main_to_nav_study"
+            app:destination="@id/nav_study"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_nav_main_to_nav_traffic_sign"
+            app:destination="@id/nav_traffic_sign"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_exam"
+        android:name="com.nguyennhatminh614.motobikedriverlicenseapp.screen.exam.ExamFragment"
+        android:label="@string/text_exam_fragment_title"
+        tools:layout="@layout/fragment_exam" />
+
+    <fragment
+        android:id="@+id/nav_study"
+        android:name="com.nguyennhatminh614.motobikedriverlicenseapp.screen.study.StudyFragment"
+        android:label="@string/text_study_fragment_title"
+        tools:layout="@layout/fragment_study" />
+
+    <fragment
+        android:id="@+id/nav_tips_high_score"
+        android:name="com.nguyennhatminh614.motobikedriverlicenseapp.screen.tiphighscores.TipHighScoreFragment"
+        android:label="@string/text_tips_high_score_fragment_title"
+        tools:layout="@layout/fragment_tip_high_score" />
+
+    <fragment
+        android:id="@+id/nav_wrong_answer"
+        android:name="com.nguyennhatminh614.motobikedriverlicenseapp.screen.wronganswer.WrongAnswerFragment"
+        android:label="@string/text_wrong_answer_fragment_title"
+        tools:layout="@layout/fragment_wrong_answer" />
+
+    <fragment
+        android:id="@+id/nav_traffic_sign"
+        android:name="com.nguyennhatminh614.motobikedriverlicenseapp.screen.trafficsign.TrafficSignFragment"
+        android:label="@string/text_traffic_sign_fragment_title"
+        tools:layout="@layout/fragment_traffic_sign" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.nguyennhatminh614.motobikedriverlicenseapp.screen.settings.SettingsFragment"
+        android:label="@string/text_settings_fragment_title"
+        tools:layout="@layout/fragment_settings" />
+</navigation>
