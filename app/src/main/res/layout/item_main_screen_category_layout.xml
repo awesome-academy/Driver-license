@@ -5,9 +5,10 @@
     android:layout_height="@dimen/dp_180">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/item_category"
         android:layout_width="@dimen/dp_150"
         android:layout_height="@dimen/dp_150"
-        android:elevation="10dp"
+        android:elevation="@dimen/dp_10"
         app:cardCornerRadius="@dimen/dp_75"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

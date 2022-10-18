@@ -2,10 +2,12 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'io.gitlab.arturbosch.detekt' version '1.20.0'
+    id 'com.google.gms.google-services'
 }
 
 apply plugin: "kotlin-android-extensions"
 apply plugin: "io.gitlab.arturbosch.detekt"
+apply plugin: "com.google.gms.google-services"
 
 android {
     namespace 'com.nguyennhatminh614.motobikedriverlicenseapp'
@@ -57,9 +59,12 @@ subprojects {
 }
 
 dependencies {
+
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
+    implementation 'com.google.firebase:firebase-firestore:24.4.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.0'
     runtimeOnly 'io.gitlab.arturbosch.detekt:detekt-api:1.20.0'
     detekt 'io.gitlab.arturbosch.detekt:detekt-cli:1.20.0'
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -81,4 +86,11 @@ dependencies {
     testImplementation "io.insert-koin:koin-test-junit4:3.2.0-beta-1"
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
+
+    implementation platform('com.google.firebase:firebase-bom:31.0.0')
+
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    implementation  "android.arch.persistence.room:runtime:1.1.1"
+    annotationProcessor  "android.arch.persistence.room:compiler:1.1.1"
 }
