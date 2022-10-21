@@ -1,4 +1,4 @@
-package com.nguyennhatminh614.motobikedriverlicenseapp.data
+package com.nguyennhatminh614.motobikedriverlicenseapp.data.model
 
 import androidx.recyclerview.widget.DiffUtil
 

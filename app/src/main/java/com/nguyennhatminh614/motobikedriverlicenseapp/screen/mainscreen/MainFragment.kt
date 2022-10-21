@@ -2,12 +2,16 @@ package com.nguyennhatminh614.motobikedriverlicenseapp.screen.mainscreen
 
 import androidx.navigation.fragment.findNavController
 import com.nguyennhatminh614.motobikedriverlicenseapp.R
-import com.nguyennhatminh614.motobikedriverlicenseapp.data.CategoryType
-import com.nguyennhatminh614.motobikedriverlicenseapp.data.MainCategoryModel
+import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.CategoryType
+import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.MainCategoryModel
 import com.nguyennhatminh614.motobikedriverlicenseapp.databinding.FragmentMainBinding
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.base.BaseFragment
+import com.nguyennhatminh614.motobikedriverlicenseapp.utils.base.BaseViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
+
+    override val viewModel by viewModel<BaseViewModel>()
 
     private val categories = listOf(
         MainCategoryModel(R.drawable.ic_exam, EXAM_CATEGORY, CategoryType.EXAM),
