@@ -24,4 +24,9 @@
     <string name="text_exam_title">Đề số 1</string>
     <string name="text_temp_long_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum...</string>
     <string name="text_tips_high_score_title">Mẹo số 1</string>
+    <string name="text_temp_current_questions">Câu 6/25</string>
+    <string name="text_example_questions">Câu hỏi: Người điều khiển phương tiện giao thông đường bộ mà trong cơ thể có chất ma túy có bị nghiêm cấm hay không?</string>
+    <string name="text_title_explain">Giải thích:</string>
+    <string name="text_temp_position">1</string>
+    <string name="text_default_detail_exam">Màn hình thi</string>
 </resources>

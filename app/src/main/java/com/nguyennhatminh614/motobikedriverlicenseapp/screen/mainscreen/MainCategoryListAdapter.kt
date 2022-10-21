@@ -2,7 +2,7 @@ package com.nguyennhatminh614.motobikedriverlicenseapp.screen.mainscreen
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.nguyennhatminh614.motobikedriverlicenseapp.data.MainCategoryModel
+import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.MainCategoryModel
 import com.nguyennhatminh614.motobikedriverlicenseapp.databinding.ItemMainScreenCategoryLayoutBinding
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.OnClickItem
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.base.BaseRecyclerViewAdapter

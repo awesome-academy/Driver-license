@@ -2,6 +2,8 @@ package com.nguyennhatminh614.motobikedriverlicenseapp.screen.splash
 
 import androidx.lifecycle.MutableLiveData
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.base.BaseViewModel
+import com.nguyennhatminh614.motobikedriverlicenseapp.utils.constant.AppConstant
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 
 class SplashViewModel : BaseViewModel() {
@@ -16,8 +18,8 @@ class SplashViewModel : BaseViewModel() {
 
     private val loadingFlow = flow {
         for (i in MIN_LOOP..MAX_LOOP) {
-            val temp = ICON.repeat(i)
-            emit(LOADING + temp)
+            emit(LOADING + ICON.repeat(i))
+            delay(AppConstant.TIME_TASK_DELAYED)
         }
     }
 

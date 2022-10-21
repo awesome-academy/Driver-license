@@ -12,6 +12,10 @@ open class BaseViewModel : ViewModel() {
     val isLoading: LiveData<Boolean>
         get() = loading
 
+    protected val exception = MutableLiveData<Exception?>()
+    val hasException: LiveData<Exception?>
+        get() = exception
+
     private var countLoading = 0
 
     protected fun launchTask(
