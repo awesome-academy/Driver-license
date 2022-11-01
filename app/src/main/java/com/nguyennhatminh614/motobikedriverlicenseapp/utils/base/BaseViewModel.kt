@@ -16,28 +16,18 @@ open class BaseViewModel : ViewModel() {
     val hasException: LiveData<Exception?>
         get() = exception
 
-    private var countLoading = 0
-
     protected fun launchTask(
-        isShowLoading: Boolean = true,
         onRequest: suspend CoroutineScope.() -> Unit = {},
     ) = viewModelScope.launch {
-        showLoading(isShowLoading)
+        showLoading()
         onRequest(this)
     }
 
-    private fun showLoading(isShowLoading: Boolean) {
-        if (!isShowLoading) return
-        countLoading++
-        if (loading.value != true) loading.value = true
+    protected fun showLoading() {
+        loading.postValue(true)
     }
 
-    protected fun hideLoading(isShowLoading: Boolean) {
-        if (!isShowLoading) return
-        countLoading--
-        if (countLoading <= 0) {
-            countLoading = 0
-            loading.value = false
-        }
+    protected fun hideLoading() {
+        loading.postValue(false)
     }
 }

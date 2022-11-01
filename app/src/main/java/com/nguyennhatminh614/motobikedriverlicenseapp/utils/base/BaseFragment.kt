@@ -10,19 +10,19 @@ import androidx.viewbinding.ViewBinding
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.dialog.LoadingDialog
 
 abstract class BaseFragment<VB : ViewBinding>(
-    private val bindingInflater: (inflater: LayoutInflater) -> VB
+    private val bindingInflater: (inflater: LayoutInflater) -> VB,
 ) : Fragment() {
 
     private var _binding: VB? = null
     protected val viewBinding: VB
         get() = _binding as VB
 
-    protected abstract val viewModel : BaseViewModel
+    protected abstract val viewModel: BaseViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         _binding = bindingInflater(inflater)
         return viewBinding.root
@@ -30,6 +30,9 @@ abstract class BaseFragment<VB : ViewBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initData()
+        handleEvent()
+        bindData()
 
         viewModel.hasException.observe(viewLifecycleOwner) {
             Toast.makeText(context, it?.message, Toast.LENGTH_SHORT).show()
@@ -42,10 +45,6 @@ abstract class BaseFragment<VB : ViewBinding>(
                 LoadingDialog.hideLoadingDialog()
             }
         }
-
-        initData()
-        handleEvent()
-        bindData()
     }
 
     abstract fun initData()

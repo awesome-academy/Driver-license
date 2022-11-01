@@ -7,9 +7,15 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.nguyennhatminh614.motobikedriverlicenseapp.R
 import com.nguyennhatminh614.motobikedriverlicenseapp.databinding.ActivityMainBinding
+import com.nguyennhatminh614.motobikedriverlicenseapp.screen.study.StudyViewModel
+import com.nguyennhatminh614.motobikedriverlicenseapp.screen.wronganswer.WrongAnswerViewModel
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.base.BaseActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
+
+    val studyViewModel by viewModel<StudyViewModel>()
+    val wrongAnswerViewModel by viewModel<WrongAnswerViewModel>()
 
     private val appBarConfiguration by lazy {
         AppBarConfiguration(
@@ -20,7 +26,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         )
     }
 
-    override fun bindData() {
+    override fun initData() {
+        //Not-op
+    }
+
+    override fun handleEvent() {
         viewBinding.apply {
             setSupportActionBar(appBarMain.toolbar)
             val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -29,12 +39,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         }
     }
 
-    override fun handleEvent() {
-        // Not support
-    }
-
-    override fun initData() {
-        // Not support
+    override fun bindData() {
+        // Not-op
     }
 
     override fun onSupportNavigateUp(): Boolean {
