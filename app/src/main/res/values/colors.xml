@@ -12,4 +12,5 @@
     <color name="highlight_color">#FF70869C</color>
     <color name="transparent">#00000000</color>
     <color name="green_pastel">#FF77DD77</color>
+    <color name="red_pastel">#FFFF6961</color>
 </resources>

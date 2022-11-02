@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dp_10"
+        android:elevation="@dimen/dp_15"
+        app:cardCornerRadius="@dimen/dp_15"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image_questions_category_banner"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="@dimen/dp_80"
+                android:layout_marginStart="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_15"
+                android:layout_marginBottom="@dimen/dp_15"
+                android:src="@drawable/ic_exam"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_question_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:fontFamily="@font/comfortaa_bold"
+                android:text="@string/text_temp_question_category"
+                android:textAllCaps="true"
+                app:layout_constraintStart_toEndOf="@+id/image_questions_category_banner"
+                app:layout_constraintTop_toTopOf="@+id/image_questions_category_banner" />
+
+            <TextView
+                android:id="@+id/text_numbers_of_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:fontFamily="@font/comfortaa_light"
+                android:text="@string/text_temp_numbers_of_questions"
+                android:textSize="@dimen/sp_11"
+                app:layout_constraintStart_toStartOf="@+id/text_question_category"
+                app:layout_constraintTop_toBottomOf="@+id/text_question_category" />
+
+            <TextView
+                android:id="@+id/text_numbers_of_selected_answer_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:fontFamily="@font/comfortaa_bold"
+                android:text="@string/text_temp_numbers_of_selected_question"
+                app:layout_constraintBottom_toBottomOf="@+id/image_questions_category_banner"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar_numbers_of_selected_answer_question"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="@dimen/fill_constraint"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_5"
+                android:indeterminateTint="@color/primary_color"
+                app:layout_constraintBottom_toBottomOf="@+id/image_questions_category_banner"
+                app:layout_constraintEnd_toStartOf="@id/text_numbers_of_selected_answer_question"
+                app:layout_constraintStart_toStartOf="@+id/text_question_category" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

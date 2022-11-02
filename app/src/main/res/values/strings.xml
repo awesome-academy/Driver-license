@@ -29,4 +29,8 @@
     <string name="text_title_explain">Giải thích:</string>
     <string name="text_temp_position">1</string>
     <string name="text_default_detail_exam">Màn hình thi</string>
+    <string name="text_temp_question_category">Khái niệm và quy tắc</string>
+    <string name="text_temp_numbers_of_questions">60 Câu</string>
+    <string name="text_temp_numbers_of_selected_question">3/70</string>
+    <string name="text_temp_nav_detail_study">Màn hình ôn tập</string>
 </resources>

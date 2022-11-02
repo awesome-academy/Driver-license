@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.TipsHighScore
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.repository.TipsHighScoreRepository
-import com.nguyennhatminh614.motobikedriverlicenseapp.utils.IResponseListener
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.base.BaseViewModel
+import com.nguyennhatminh614.motobikedriverlicenseapp.utils.interfaces.IResponseListener
 
 class TipsHighScoreViewModel(
     private val repository: TipsHighScoreRepository,
@@ -21,17 +21,17 @@ class TipsHighScoreViewModel(
     }
 
     private fun fetchData() {
-        launchTask(isShowLoading = true) {
+        launchTask {
             repository.callTipsHighScoreData(
                 object : IResponseListener<MutableList<TipsHighScore>> {
                     override fun onSuccess(data: MutableList<TipsHighScore>) {
                         _listTipsHighScore.postValue(data)
-                        hideLoading(true)
+                        hideLoading()
                     }
 
                     override fun onError(exception: Exception?) {
                         _exception.postValue(exception)
-                        hideLoading(true)
+                        hideLoading()
                     }
                 }
             )

@@ -7,7 +7,7 @@ import android.view.WindowManager
 import com.nguyennhatminh614.motobikedriverlicenseapp.databinding.DialogLoadingLayoutBinding
 
 object LoadingDialog {
-    private lateinit var dialog: AlertDialog
+    private var dialog: AlertDialog? = null
 
     fun showLoadingDialog(context: Context?) {
         val windowLayoutParams = WindowManager.LayoutParams()
@@ -19,11 +19,11 @@ object LoadingDialog {
             .setCancelable(false)
             .create()
 
-        dialog.show()
-        dialog.window?.attributes = windowLayoutParams
+        dialog?.show()
+        dialog?.window?.attributes = windowLayoutParams
     }
 
     fun hideLoadingDialog() {
-        dialog.hide()
+        dialog?.hide()
     }
 }

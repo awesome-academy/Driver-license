@@ -1,10 +1,8 @@
 package com.nguyennhatminh614.motobikedriverlicenseapp.screen.tiphighscores
 
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.nguyennhatminh614.motobikedriverlicenseapp.databinding.FragmentTipHighScoreBinding
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.base.BaseFragment
-import com.nguyennhatminh614.motobikedriverlicenseapp.utils.dialog.LoadingDialog
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

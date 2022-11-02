@@ -13,11 +13,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
     private val viewModel by viewModel<SplashViewModel>()
 
     override fun initData() {
-        supportActionBar?.hide()
+        //Not-op
     }
 
     override fun handleEvent() {
-        //Not-op
+        supportActionBar?.hide()
     }
 
     override fun bindData() {
