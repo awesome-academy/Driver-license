@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.WindowManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.QuestionOptions
-import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.Questions
 import com.nguyennhatminh614.motobikedriverlicenseapp.databinding.DialogBottomSheetQuestionsListBinding
 import com.nguyennhatminh614.motobikedriverlicenseapp.screen.questions.BottomSheetQuestionListAdapter
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.interfaces.IBottomSheetListener

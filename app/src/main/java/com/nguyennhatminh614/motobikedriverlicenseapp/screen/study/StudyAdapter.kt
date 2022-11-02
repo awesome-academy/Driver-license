@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.StudyCategory
 import com.nguyennhatminh614.motobikedriverlicenseapp.databinding.ItemFragmentStudyLayoutBinding
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.OnClickItem
-import com.nguyennhatminh614.motobikedriverlicenseapp.utils.OnClickItemPosition
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.base.BaseRecyclerViewAdapter
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.base.BaseViewHolder
 
