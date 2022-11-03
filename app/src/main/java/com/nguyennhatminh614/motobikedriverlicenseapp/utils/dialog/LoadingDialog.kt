@@ -14,16 +14,18 @@ object LoadingDialog {
         windowLayoutParams.width = WindowManager.LayoutParams.MATCH_PARENT
         windowLayoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
 
-        dialog = AlertDialog.Builder(context)
-            .setView(DialogLoadingLayoutBinding.inflate(LayoutInflater.from(context)).root)
-            .setCancelable(false)
-            .create()
+        if(dialog == null) {
+            dialog = AlertDialog.Builder(context)
+                .setView(DialogLoadingLayoutBinding.inflate(LayoutInflater.from(context)).root)
+                .setCancelable(false)
+                .create()
+        }
 
         dialog?.show()
         dialog?.window?.attributes = windowLayoutParams
     }
 
     fun hideLoadingDialog() {
-        dialog?.hide()
+        dialog?.dismiss()
     }
 }

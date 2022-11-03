@@ -24,10 +24,10 @@ open class BaseViewModel : ViewModel() {
     }
 
     protected fun showLoading() {
-        loading.postValue(true)
+        loading.value = true
     }
 
     protected fun hideLoading() {
-        loading.postValue(false)
+        loading.value = false
     }
 }

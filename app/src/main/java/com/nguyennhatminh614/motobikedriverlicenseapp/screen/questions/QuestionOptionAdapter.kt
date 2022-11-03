@@ -1,6 +1,5 @@
 package com.nguyennhatminh614.motobikedriverlicenseapp.screen.questions
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.nguyennhatminh614.motobikedriverlicenseapp.R
