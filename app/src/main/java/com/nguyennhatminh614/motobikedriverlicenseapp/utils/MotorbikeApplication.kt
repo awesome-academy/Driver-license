@@ -4,6 +4,7 @@ import android.app.Application
 import com.nguyennhatminh614.motobikedriverlicenseapp.di.apiModule
 import com.nguyennhatminh614.motobikedriverlicenseapp.di.databaseModule
 import com.nguyennhatminh614.motobikedriverlicenseapp.di.examModule
+import com.nguyennhatminh614.motobikedriverlicenseapp.di.sharedPreferenceModule
 import com.nguyennhatminh614.motobikedriverlicenseapp.di.studyModule
 import com.nguyennhatminh614.motobikedriverlicenseapp.di.tipsHighScoreModule
 import com.nguyennhatminh614.motobikedriverlicenseapp.di.viewModelModule
@@ -19,6 +20,7 @@ class MotorbikeApplication : Application() {
             androidContext(this@MotorbikeApplication)
 
             modules(
+                sharedPreferenceModule,
                 databaseModule,
                 apiModule,
                 tipsHighScoreModule,

@@ -106,7 +106,7 @@ class StudyViewModel(
                                     oldList[TRAFFIC_SIGNAL_POSITION]
                                 ))
                                 add(data.processPullListData(
-                                    AppConstant.SAT_FIGURE,
+                                    AppConstant.TRAFFIC_SITUATION_BY_PICTURE,
                                     oldList[SAT_FIGURE_POSITION]
                                 ))
                             }

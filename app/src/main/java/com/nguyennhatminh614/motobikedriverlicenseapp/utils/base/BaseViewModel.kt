@@ -16,6 +16,10 @@ open class BaseViewModel : ViewModel() {
     val hasException: LiveData<Exception?>
         get() = exception
 
+    private val _isVisibleFinishExamButton = MutableLiveData(false)
+    val isVisibleFinishExamButton: LiveData<Boolean>
+        get() = _isVisibleFinishExamButton
+
     protected fun launchTask(
         onRequest: suspend CoroutineScope.() -> Unit = {},
     ) = viewModelScope.launch {
@@ -29,5 +33,9 @@ open class BaseViewModel : ViewModel() {
 
     protected fun hideLoading() {
         loading.value = false
+    }
+
+    fun setVisibleFinishExamButton(isVisible: Boolean) {
+        _isVisibleFinishExamButton.postValue(isVisible)
     }
 }

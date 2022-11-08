@@ -33,4 +33,8 @@
     <string name="text_temp_numbers_of_questions">60 Câu</string>
     <string name="text_temp_numbers_of_selected_question">3/70</string>
     <string name="text_temp_nav_detail_study">Màn hình ôn tập</string>
+    <string name="button_finish_exam_text">Kết thúc</string>
+    <string name="current_time_exam_text">19:00</string>
+    <string name="text_empty_data">Không có dữ liệu!!</string>
+    <string name="text_dark_mode">Chế độ màn hình tối:</string>
 </resources>

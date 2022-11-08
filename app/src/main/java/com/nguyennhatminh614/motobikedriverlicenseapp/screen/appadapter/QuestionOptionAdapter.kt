@@ -1,4 +1,4 @@
-package com.nguyennhatminh614.motobikedriverlicenseapp.screen.questions
+package com.nguyennhatminh614.motobikedriverlicenseapp.screen.appadapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,9 +16,14 @@ class QuestionOptionAdapter :
         QuestionOptions.getDiffUtilCallBack()) {
 
     private var selectedPosition = AppConstant.NONE_POSITION
+    private var isClickable = true
 
     override fun registerOnClickItemEvent(onClickItem: OnClickItem<QuestionOptions>) {
         this.clickItemInterface = onClickItem
+    }
+
+    fun disableClickEvent() {
+        isClickable = false
     }
 
     fun updateStateListWithPosition(item: MutableList<QuestionOptions>, position: Int) {
@@ -50,7 +55,6 @@ class QuestionOptionAdapter :
         const val STATE_UNKNOWN_COLOR = R.color.white
         const val STATE_INCORRECT_COLOR = R.color.red_pastel
         const val STATE_CORRECT_COLOR = R.color.green_pastel
-        const val CLEAR_SELECTED_POSITION_DATA = ""
     }
 
     inner class ViewHolder(
@@ -91,10 +95,12 @@ class QuestionOptionAdapter :
                     }
                 }
 
-                root.setOnClickListener {
-                    setSingleSelection(adapterPosition)
-                    clickItemInterface?.let { function ->
-                        function(QuestionOptions(adapterPosition, item.data, item.stateNumber))
+                if(isClickable) {
+                    root.setOnClickListener {
+                        setSingleSelection(adapterPosition)
+                        clickItemInterface?.let { function ->
+                            function(QuestionOptions(adapterPosition, item.data, item.stateNumber))
+                        }
                     }
                 }
             }
