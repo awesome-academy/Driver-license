@@ -1,6 +1,7 @@
 package com.nguyennhatminh614.motobikedriverlicenseapp.utils.constant
 
 object AppConstant {
+    const val DEFAULT_NOT_HAVE_TIME_STAMP = -1L
     const val TIME_TASK_DELAYED = 400L
     const val QUESTION_COLLECTION = "questions"
     const val TIPS_HIGH_SCORE_COLLECTION = "tipshighscore"
@@ -8,12 +9,15 @@ object AppConstant {
     const val MUST_NOT_WRONG_ANSWER = "MustNotWrongAnswer"
     const val CONCEPTS_AND_RULES = "ConceptAndRules"
     const val TRAFFIC_SIGNAL = "TrafficSignal"
-    const val SAT_FIGURE = "SatFigure"
+    const val TRAFFIC_SITUATION_BY_PICTURE = "TrafficSituationByPicture"
 
-    const val STUDY_BUNDLE_KEY = "StudyBundleKey"
     const val NONE_POSITION = -1
 
     const val FIRST_INDEX = 0
     const val EMPTY_SIZE = 0
     const val EMPTY_DATA = ""
+
+    const val EXAM_TEST_FULL_TIME = 19 * 60 * 1000L
+    const val SHARED_PREFERENCES_FILE_PATH = "com.nguyennhatminh614.motobikedriverlicenseapp"
+    const val DARK_MODE = "DarkMode"
 }

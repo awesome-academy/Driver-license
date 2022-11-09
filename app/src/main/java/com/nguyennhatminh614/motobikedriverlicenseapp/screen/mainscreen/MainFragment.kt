@@ -5,8 +5,10 @@ import com.nguyennhatminh614.motobikedriverlicenseapp.R
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.CategoryType
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.MainCategoryModel
 import com.nguyennhatminh614.motobikedriverlicenseapp.databinding.FragmentMainBinding
+import com.nguyennhatminh614.motobikedriverlicenseapp.screen.exam.ExamViewModel
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.base.BaseFragment
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.base.BaseViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
@@ -42,7 +44,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                 CategoryType.WRONG_ANSWER -> R.id.action_nav_main_to_nav_wrong_answer
                 CategoryType.SETTINGS -> R.id.action_nav_main_to_nav_settings
             }
-
             findNavController().navigate(navigateIDAction)
         }
     }

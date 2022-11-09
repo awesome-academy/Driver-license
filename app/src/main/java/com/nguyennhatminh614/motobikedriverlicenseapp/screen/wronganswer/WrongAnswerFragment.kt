@@ -1,5 +1,6 @@
 package com.nguyennhatminh614.motobikedriverlicenseapp.screen.wronganswer
 
+import androidx.core.view.isVisible
 import androidx.viewpager2.widget.ViewPager2
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.QuestionOptions
 import com.nguyennhatminh614.motobikedriverlicenseapp.databinding.FragmentWrongAnswerBinding
@@ -28,6 +29,8 @@ class WrongAnswerFragment :
     }
 
     override fun initData() {
+
+
         viewBinding.viewPagerQuestions.adapter = questionAdapter
     }
 
@@ -56,10 +59,11 @@ class WrongAnswerFragment :
 
         viewBinding.bottomBar.setOnClickListener {
             context?.let { notNullContext ->
-                bottomSheetDialog.showDialog(
+                bottomSheetDialog.initDialog(
                     notNullContext,
                     viewModel.listQuestionOptions.value,
-                    viewBinding.viewPagerQuestions.currentItem,
+                    viewBinding.viewPagerQuestions.currentItem)
+                bottomSheetDialog.setDialogEvent(
                     object : IBottomSheetListener {
                         override fun onNextQuestion(listener: IResponseListener<Int>) {
                             if (viewBinding.viewPagerQuestions.currentItem < listQuestionSize) {
@@ -83,12 +87,19 @@ class WrongAnswerFragment :
                             viewBinding.viewPagerQuestions.currentItem = index
                         }
 
-                    }, listQuestionSize)
+                    }
+                )
+                bottomSheetDialog.showDialog()
             }
         }
     }
 
     override fun bindData() {
+        viewModel.listWrongAnswer.observe(viewLifecycleOwner) {
+            viewBinding.layoutVisibleWhenHaveData.isVisible = !it.isEmpty()
+            viewBinding.layoutVisibleWhenDataIsEmpty.isVisible = it.isEmpty()
+        }
+
         viewModel.listWrongAnswerQuestion.observe(viewLifecycleOwner) {
             listQuestionSize = it.size
             viewBinding.textCurrentQuestions.text =

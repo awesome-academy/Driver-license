@@ -35,6 +35,7 @@ class WrongAnswerViewModel(
     private fun fetchData() {
         launchTask {
             val data = wrongAnswerRepository.getAllWrongAnswerQuestion()
+
             if (data.isNotEmpty()) {
                 _listWrongAnswer.postValue(data)
                 wrongAnswerRepository.getAllListQuestion(
@@ -63,10 +64,6 @@ class WrongAnswerViewModel(
                         }
                     }
                 )
-            } else {
-                val exception = Exception(EMPTY_DATA_EXCEPTION)
-                this@WrongAnswerViewModel.exception.postValue(exception)
-                hideLoading()
             }
 
             hideLoading()
@@ -83,7 +80,7 @@ class WrongAnswerViewModel(
 
             currentListQuestion.forEach { question ->
                 data.forEach {
-                    if(it.questionsID == question.id) {
+                    if (it.questionsID == question.id) {
                         newList.add(question)
                         return@forEach
                     }
@@ -106,9 +103,5 @@ class WrongAnswerViewModel(
 
     fun getQuestionOptionSelectedByQuestionPosition(questionsPosition: Int): QuestionOptions? {
         return _listQuestionState.value?.get(questionsPosition)
-    }
-
-    companion object {
-        private const val EMPTY_DATA_EXCEPTION = "Không có dữ liệu!!"
     }
 }

@@ -1,4 +1,4 @@
-package com.nguyennhatminh614.motobikedriverlicenseapp.screen.questions
+package com.nguyennhatminh614.motobikedriverlicenseapp.screen.appadapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

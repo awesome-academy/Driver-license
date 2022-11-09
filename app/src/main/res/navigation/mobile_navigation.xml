@@ -50,6 +50,9 @@
         <action
             android:id="@+id/action_nav_exam_to_nav_detail_exam"
             app:destination="@id/nav_detail_exam" />
+        <action
+            android:id="@+id/action_nav_exam_to_nav_main"
+            app:destination="@id/nav_main" />
     </fragment>
 
     <fragment
@@ -60,35 +63,54 @@
         <action
             android:id="@+id/action_nav_study_to_nav_detail_study"
             app:destination="@id/nav_detail_study" />
+        <action
+            android:id="@+id/action_nav_study_to_nav_main"
+            app:destination="@id/nav_main" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_tips_high_score"
         android:name="com.nguyennhatminh614.motobikedriverlicenseapp.screen.tiphighscores.TipHighScoreFragment"
         android:label="@string/text_tips_high_score_fragment_title"
-        tools:layout="@layout/fragment_tip_high_score" />
+        tools:layout="@layout/fragment_tip_high_score" >
+        <action
+            android:id="@+id/action_nav_tips_high_score_to_nav_main"
+            app:destination="@id/nav_main" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_wrong_answer"
         android:name="com.nguyennhatminh614.motobikedriverlicenseapp.screen.wronganswer.WrongAnswerFragment"
         android:label="@string/text_wrong_answer_fragment_title"
-        tools:layout="@layout/fragment_wrong_answer" />
+        tools:layout="@layout/fragment_wrong_answer" >
+        <action
+            android:id="@+id/action_nav_wrong_answer_to_nav_main"
+            app:destination="@id/nav_main" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_traffic_sign"
         android:name="com.nguyennhatminh614.motobikedriverlicenseapp.screen.trafficsign.TrafficSignFragment"
         android:label="@string/text_traffic_sign_fragment_title"
-        tools:layout="@layout/fragment_traffic_sign" />
+        tools:layout="@layout/fragment_traffic_sign" >
+        <action
+            android:id="@+id/action_nav_traffic_sign_to_nav_main"
+            app:destination="@id/nav_main" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.nguyennhatminh614.motobikedriverlicenseapp.screen.settings.SettingsFragment"
         android:label="@string/text_settings_fragment_title"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_nav_settings_to_nav_main"
+            app:destination="@id/nav_main" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_detail_exam"
-        android:name="com.nguyennhatminh614.motobikedriverlicenseapp.screen.detailexam.DetailExamFragment"
+        android:name="com.nguyennhatminh614.motobikedriverlicenseapp.screen.exam.DetailExamFragment"
         android:label="@string/text_default_detail_exam"
         tools:layout="@layout/fragment_detail_exam_layout" />
 

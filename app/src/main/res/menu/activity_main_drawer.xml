@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:tools="http://schemas.android.com/tools"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+    <group
+        android:id="@+id/menu_navigation_drawer"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_main"
+            android:checked="true"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Trang chủ" />
+
+        <item
+            android:id="@+id/nav_exam"
+            android:icon="@drawable/ic_menu_exam"
+            android:title="Thi sát hạch" />
+
+        <item
+            android:id="@+id/nav_study"
+            android:icon="@drawable/ic_menu_study"
+            android:title="Học lý thuyết" />
+
+        <item
+            android:id="@+id/nav_traffic_sign"
+            android:icon="@drawable/ic_menu_traffic_sign"
+            android:title="Biển báo đường bộ" />
+
+        <item
+            android:id="@+id/nav_tips_high_score"
+            android:icon="@drawable/ic_menu_tips_high_scores"
+            android:title="Mẹo điểm cao" />
+
+        <item
+            android:id="@+id/nav_wrong_answer"
+            android:icon="@drawable/ic_menu_wrong_answer"
+            android:title="Các câu làm sai" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="Cài đặt" />
+    </group>
 </menu>
