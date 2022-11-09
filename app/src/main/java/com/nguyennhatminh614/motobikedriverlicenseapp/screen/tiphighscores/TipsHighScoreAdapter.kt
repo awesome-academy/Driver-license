@@ -45,10 +45,10 @@ class TipsHighScoreAdapter :
 
         private fun toggleWithAnimation(data: TipsHighScore, binding: ItemTipsHighScoreLayoutBinding) {
             if (data.isVisible) {
-                binding.buttonSpanDetailContent.animate().rotation(DEGREE_0)
+                binding.buttonSpanDetailContent.animate().rotation(DEGREE_180)
                 binding.expandableView.isVisible = false
             } else {
-                binding.buttonSpanDetailContent.animate().rotation(DEGREE_180)
+                binding.buttonSpanDetailContent.animate().rotation(DEGREE_0)
                 binding.expandableView.isVisible = true
             }
 

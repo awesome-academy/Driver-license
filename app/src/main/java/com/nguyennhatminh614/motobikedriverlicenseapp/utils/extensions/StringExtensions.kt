@@ -6,3 +6,10 @@ fun String?.processEndline() : String {
     }
     return this.replace("\\n", System.getProperty("line.separator"))
 }
+
+fun String?.processDoubleQuotes(): String {
+    if (this == null) {
+        return ""
+    }
+    return this.replace("\\\"", "\"")
+}

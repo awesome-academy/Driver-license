@@ -37,4 +37,5 @@
     <string name="current_time_exam_text">19:00</string>
     <string name="text_empty_data">Không có dữ liệu!!</string>
     <string name="text_dark_mode">Chế độ màn hình tối:</string>
+    <string name="temp_traffic_sign_title">Temp traffic sign title</string>
 </resources>

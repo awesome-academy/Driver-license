@@ -4,6 +4,7 @@ object AppConstant {
     const val DEFAULT_NOT_HAVE_TIME_STAMP = -1L
     const val TIME_TASK_DELAYED = 400L
     const val QUESTION_COLLECTION = "questions"
+    const val TRAFFIC_SIGN_COLLECTION = "trafficsign"
     const val TIPS_HIGH_SCORE_COLLECTION = "tipshighscore"
 
     const val MUST_NOT_WRONG_ANSWER = "MustNotWrongAnswer"

@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="invisible">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/fill_constraint"
@@ -30,7 +31,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:overScrollMode="never"/>
+                    android:overScrollMode="never" />
 
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -81,32 +82,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <include
         android:id="@+id/layout_visible_when_data_is_empty"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        layout="@layout/fragment_layout_not_found_data"/>
 
-        <ImageView
-            android:id="@+id/image_not_founded"
-            android:layout_width="@dimen/dp_300"
-            android:layout_height="@dimen/dp_300"
-            android:src="@drawable/image_not_found"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:scaleType="center"/>
-
-        <TextView
-            android:id="@+id/text_not_founded"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_empty_data"
-            app:layout_constraintEnd_toEndOf="@+id/image_not_founded"
-            app:layout_constraintStart_toStartOf="@+id/image_not_founded"
-            app:layout_constraintTop_toBottomOf="@id/image_not_founded"
-            android:layout_marginTop="@dimen/dp_30"
-            android:textSize="@dimen/sp_22"
-            android:fontFamily="@font/comfortaa_bold"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
