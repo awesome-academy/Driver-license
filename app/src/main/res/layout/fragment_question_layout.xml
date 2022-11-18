@@ -51,7 +51,6 @@
             android:layout_width="@dimen/fill_constraint"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_20"
-            android:alpha="0.75"
             android:minHeight="@dimen/dp_100"
             app:cardBackgroundColor="@color/green_pastel"
             app:cardCornerRadius="@dimen/dp_20"

@@ -1,5 +1,6 @@
 package com.nguyennhatminh614.motobikedriverlicenseapp.screen.study
 
+import androidx.core.view.isVisible
 import androidx.viewpager2.widget.ViewPager2
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.QuestionOptions
 import com.nguyennhatminh614.motobikedriverlicenseapp.databinding.FragmentDetailStudyLayoutBinding
@@ -23,6 +24,32 @@ class DetailStudyFragment :
 
     private val questionAdapter by lazy {
         ViewPagerAdapter(parentFragmentManager, lifecycle)
+    }
+
+    private val bottomSheetDialogCallBack by lazy {
+        object : IBottomSheetListener {
+            override fun onNextQuestion(listener: IResponseListener<Int>) {
+                if (viewBinding.viewPagerQuestions.currentItem < listQuestionSize) {
+                    viewBinding.viewPagerQuestions.currentItem++
+                    listener.onSuccess(viewBinding.viewPagerQuestions.currentItem)
+                } else {
+                    listener.onError(null)
+                }
+            }
+
+            override fun onPreviousQuestion(listener: IResponseListener<Int>) {
+                if (viewBinding.viewPagerQuestions.currentItem > AppConstant.FIRST_INDEX) {
+                    viewBinding.viewPagerQuestions.currentItem--
+                    listener.onSuccess(viewBinding.viewPagerQuestions.currentItem)
+                } else {
+                    listener.onError(null)
+                }
+            }
+
+            override fun onClickMoveToPosition(index: Int, data: QuestionOptions) {
+                viewBinding.viewPagerQuestions.currentItem = index
+            }
+        }
     }
 
     override fun initData() {
@@ -60,32 +87,7 @@ class DetailStudyFragment :
                         ?: AppConstant.NONE_POSITION)
                         ?.listQuestionsState,
                     viewBinding.viewPagerQuestions.currentItem)
-                bottomSheetDialog.setDialogEvent(
-                    object : IBottomSheetListener {
-                        override fun onNextQuestion(listener: IResponseListener<Int>) {
-                            if (viewBinding.viewPagerQuestions.currentItem < listQuestionSize) {
-                                viewBinding.viewPagerQuestions.currentItem++
-                                listener.onSuccess(viewBinding.viewPagerQuestions.currentItem)
-                            } else {
-                                listener.onError(null)
-                            }
-                        }
-
-                        override fun onPreviousQuestion(listener: IResponseListener<Int>) {
-                            if (viewBinding.viewPagerQuestions.currentItem > AppConstant.FIRST_INDEX) {
-                                viewBinding.viewPagerQuestions.currentItem--
-                                listener.onSuccess(viewBinding.viewPagerQuestions.currentItem)
-                            } else {
-                                listener.onError(null)
-                            }
-                        }
-
-                        override fun onClickMoveToPosition(index: Int, data: QuestionOptions) {
-                            viewBinding.viewPagerQuestions.currentItem = index
-                        }
-                    }
-                )
-
+                bottomSheetDialog.setDialogEvent(bottomSheetDialogCallBack)
                 bottomSheetDialog.showDialog()
             }
         }
@@ -98,12 +100,19 @@ class DetailStudyFragment :
             listQuestionSize = it[currentPosition].totalNumberOfQuestions
 
             var index = AppConstant.FIRST_INDEX
-            it[currentPosition].listQuestions.forEach { question ->
-                questionAdapter.addFragment(
-                    QuestionStudyFragment.newInstance(index, question)
-                )
-                index++
+            if (questionAdapter.isEmptyFragment()) {
+                it[currentPosition].listQuestions.forEach { question ->
+                    questionAdapter.addFragment(
+                        QuestionStudyFragment.newInstance(index, question)
+                    )
+                    index++
+                }
             }
+
+            viewBinding.layoutVisibleWhenHaveData.isVisible =
+                it[currentPosition].listQuestions.isEmpty().not()
+            viewBinding.layoutVisibleWhenDataIsEmpty.root.isVisible =
+                it[currentPosition].listQuestions.isEmpty()
         }
     }
 }

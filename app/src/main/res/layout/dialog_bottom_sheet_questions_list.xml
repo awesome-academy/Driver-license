@@ -69,7 +69,7 @@
         android:id="@+id/recycler_view_question_icon_list"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_420"
-        android:background="@color/background_color"
+        android:background="?attr/backgroundColor"
         app:layout_constraintTop_toBottomOf="@id/bottom_bar"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="5"

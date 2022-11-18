@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MotobikeDriverLicenseApp</string>
+    <string name="app_name">Ôn thi GPLX Xe máy A1</string>
     <string name="text_temp_loading_splash_screen">Đang tải.</string>
     <string name="title_activity_main">Ôn thi GPLX</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -38,4 +38,5 @@
     <string name="text_empty_data">Không có dữ liệu!!</string>
     <string name="text_dark_mode">Chế độ màn hình tối:</string>
     <string name="temp_traffic_sign_title">Temp traffic sign title</string>
+    <string name="button_reset">Reset</string>
 </resources>

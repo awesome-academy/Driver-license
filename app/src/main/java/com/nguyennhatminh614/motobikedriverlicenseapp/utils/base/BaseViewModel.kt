@@ -20,6 +20,10 @@ open class BaseViewModel : ViewModel() {
     val isVisibleFinishExamButton: LiveData<Boolean>
         get() = _isVisibleFinishExamButton
 
+    private val _isVisibleResetButton = MutableLiveData(false)
+    val isVisibleResetButton: LiveData<Boolean>
+        get() = _isVisibleResetButton
+
     protected fun launchTask(
         onRequest: suspend CoroutineScope.() -> Unit = {},
     ) = viewModelScope.launch {
@@ -36,6 +40,10 @@ open class BaseViewModel : ViewModel() {
     }
 
     fun setVisibleFinishExamButton(isVisible: Boolean) {
-        _isVisibleFinishExamButton.postValue(isVisible)
+        _isVisibleFinishExamButton.value = isVisible
+    }
+
+    fun setVisibleResetButton(isVisible: Boolean) {
+        _isVisibleResetButton.value = isVisible
     }
 }

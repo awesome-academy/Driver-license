@@ -14,6 +14,7 @@
         android:elevation="@dimen/dp_15"
         app:strokeWidth="@dimen/dp_3"
         app:cardCornerRadius="@dimen/dp_30"
+        app:cardBackgroundColor="?attr/backgroundColorForBottomSheet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +27,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/comfortaa_bold"
             android:text="1"
+            android:textColor="@color/black"
             android:textSize="25sp" />
 
     </com.google.android.material.card.MaterialCardView>
