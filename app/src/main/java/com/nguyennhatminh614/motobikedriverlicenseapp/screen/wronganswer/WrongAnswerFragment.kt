@@ -97,7 +97,7 @@ class WrongAnswerFragment :
     override fun bindData() {
         viewModel.listWrongAnswer.observe(viewLifecycleOwner) {
             viewBinding.layoutVisibleWhenHaveData.isVisible = !it.isEmpty()
-            viewBinding.layoutVisibleWhenDataIsEmpty.isVisible = it.isEmpty()
+            viewBinding.layoutVisibleWhenDataIsEmpty.root.isVisible = it.isEmpty()
         }
 
         viewModel.listWrongAnswerQuestion.observe(viewLifecycleOwner) {

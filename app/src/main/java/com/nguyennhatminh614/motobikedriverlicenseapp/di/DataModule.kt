@@ -7,6 +7,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.repository.local.MotorbikeAppDatabase
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.constant.AppConstant
+import com.nguyennhatminh614.motobikedriverlicenseapp.utils.network.InternetConnection
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -26,6 +27,14 @@ val databaseModule = module {
 val apiModule = module {
     single { Firebase.firestore }
 }
+
+val networkModule = module {
+    single { provideNetworkObserver(androidContext())  }
+
+}
+
+fun provideNetworkObserver(context: Context) =
+    InternetConnection(context)
 
 fun provideDatabase(context: Context): MotorbikeAppDatabase =
     Room.databaseBuilder(

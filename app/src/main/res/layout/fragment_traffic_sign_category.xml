@@ -6,17 +6,10 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_tips_high_score"
+        android:id="@+id/recycler_view_traffic_sign"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_tips_high_score_layout" />
-
-    <include
-        android:id="@+id/layout_visible_when_data_is_empty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        layout="@layout/fragment_layout_not_found_data"
-        android:visibility="invisible"/>
+        tools:listitem="@layout/item_traffic_sign_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

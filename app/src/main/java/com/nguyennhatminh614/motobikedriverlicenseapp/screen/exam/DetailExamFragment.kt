@@ -1,5 +1,9 @@
 package com.nguyennhatminh614.motobikedriverlicenseapp.screen.exam
 
+import android.app.AlertDialog
+import android.content.DialogInterface
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
@@ -30,6 +34,23 @@ class DetailExamFragment :
 
     private val questionAdapter by lazy {
         ViewPagerAdapter(parentFragmentManager, lifecycle)
+    }
+
+    private val backPressedCallback by lazy {
+        object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                AlertDialog.Builder(context)
+                    .setTitle(DIALOG_TITLE)
+                    .setMessage(DIALOG_MESSAGE)
+                    .setPositiveButton(YES_BUTTON) { _, _ ->
+                        viewModel.saveCurrentExamState()
+                        findNavController().navigateUp()
+                    }
+                    .setNegativeButton(NO_BUTTON) { _, _ -> }
+                    .create()
+                    .show()
+            }
+        }
     }
 
     override val viewModel by sharedViewModel<ExamViewModel>()
@@ -74,7 +95,6 @@ class DetailExamFragment :
             }
         }
 
-
         viewBinding.bottomBar.setOnClickListener {
             context?.let { notNullContext ->
                 bottomSheetDialog.initDialog(
@@ -113,6 +133,8 @@ class DetailExamFragment :
                 bottomSheetDialog.showDialog()
             }
         }
+
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, backPressedCallback)
     }
 
     override fun bindData() {
@@ -152,6 +174,10 @@ class DetailExamFragment :
         private const val CHANGE_TO_NEXT_QUESTION_DELAY_TIME = 700L
         private const val NO_TIME_LEFT = 0L
         private const val CENTER_TEXT_QUESTION = 0.5F
+        private const val DIALOG_TITLE = "Thông báo"
+        private const val DIALOG_MESSAGE = "Bạn có muốn thoát bài kiểm tra này không?"
+        private const val YES_BUTTON = "Có"
+        private const val NO_BUTTON = "Không"
     }
 }
 

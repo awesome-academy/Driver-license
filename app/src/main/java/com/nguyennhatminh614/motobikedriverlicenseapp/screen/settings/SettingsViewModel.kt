@@ -12,6 +12,9 @@ class SettingsViewModel(
 
     private val _isDarkModeOn = MutableLiveData<Boolean>()
 
+    init {
+        _isDarkModeOn.postValue(sharedPreferences.getBoolean(AppConstant.DARK_MODE, false))
+    }
     val isDarkModeOn: LiveData<Boolean>
         get() = _isDarkModeOn
 
@@ -22,9 +25,6 @@ class SettingsViewModel(
     fun turnOffDarkMode() {
         _isDarkModeOn.value = false
     }
-
-    fun getDarkModeStateFromSharedPreferences() =
-        _isDarkModeOn.postValue(sharedPreferences.getBoolean(AppConstant.DARK_MODE, false))
 
     fun saveDarkModeState() =
         sharedPreferences.edit()

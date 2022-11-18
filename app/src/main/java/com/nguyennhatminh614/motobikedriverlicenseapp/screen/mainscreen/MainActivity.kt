@@ -1,13 +1,13 @@
 package com.nguyennhatminh614.motobikedriverlicenseapp.screen.mainscreen
 
 import android.app.AlertDialog
-import android.content.Context
-import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -20,7 +20,9 @@ import com.nguyennhatminh614.motobikedriverlicenseapp.screen.settings.SettingsVi
 import com.nguyennhatminh614.motobikedriverlicenseapp.screen.study.StudyViewModel
 import com.nguyennhatminh614.motobikedriverlicenseapp.screen.wronganswer.WrongAnswerViewModel
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.base.BaseActivity
-import com.nguyennhatminh614.motobikedriverlicenseapp.utils.constant.AppConstant
+import com.nguyennhatminh614.motobikedriverlicenseapp.utils.network.ConnectivityObserver
+import com.nguyennhatminh614.motobikedriverlicenseapp.utils.network.InternetConnection
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -30,6 +32,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     val wrongAnswerViewModel by viewModel<WrongAnswerViewModel>()
     val examViewModel by viewModel<ExamViewModel>()
     val settingsViewModel by viewModel<SettingsViewModel>()
+
+    val internetConnectionObserver by inject<InternetConnection>()
+
+    val notConnectDialog by lazy {
+        AlertDialog.Builder(this@MainActivity)
+            .setTitle(DIALOG_TITLE)
+            .setMessage(LOST_INTERNET_CONNECTION_DIALOG_MESSAGE)
+            .setNegativeButton(LOST_INTERNET_CONNECTION_DIALOG_BUTTON) { _, _ -> }
+            .create()
+    }
 
     private val appBarConfiguration by lazy {
         AppBarConfiguration(
@@ -47,7 +59,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     override fun initData() {
-        settingsViewModel.getDarkModeStateFromSharedPreferences()
+        if (internetConnectionObserver.isOnline().not()) {
+            notConnectDialog.show()
+        }
     }
 
     override fun handleEvent() {
@@ -59,7 +73,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
             appBarMain.buttonFinishExam.setOnClickListener {
                 val builder = AlertDialog.Builder(this@MainActivity)
-                    .setTitle(FINISH_EXAM_DIALOG_TITLE)
+                    .setTitle(DIALOG_TITLE)
                     .setMessage(FINISH_EXAM_DIALOG_MESSAGE)
                     .setCancelable(false)
                     .setPositiveButton(FINISH_EXAM_YES_BUTTON) { _, _ ->
@@ -87,16 +101,41 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
         settingsViewModel.isDarkModeOn.observe(this) {
             if (it) {
-                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
+                if (isUsingNightModeResources().not()) {
+                    AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
+                }
             } else {
-                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
+                if(isUsingNightModeResources()) {
+                    AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
+                }
             }
         }
+
+        lifecycleScope.launch {
+            internetConnectionObserver.observe().collect { status ->
+                when (status) {
+                    ConnectivityObserver.Status.AVAILABLE -> {
+                        if (notConnectDialog.isShowing) {
+                            notConnectDialog.hide()
+                        }
+                    }
+                    ConnectivityObserver.Status.LOST_CONNECTION -> {
+                        notConnectDialog.show()
+                    }
+                    else -> {}
+                }
+            }
+        }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+
+        return if(navController.currentDestination?.id == R.id.nav_detail_exam){
+            onBackPressedDispatcher.onBackPressed()
+            true
+        } else navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     override fun onPause() {
@@ -105,9 +144,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     companion object {
-        private const val FINISH_EXAM_DIALOG_TITLE = "Thông báo"
+        private const val DIALOG_TITLE = "Thông báo"
+        private const val LOST_INTERNET_CONNECTION_DIALOG_MESSAGE = "Mất kết nối mạng"
+        private const val LOST_INTERNET_CONNECTION_DIALOG_BUTTON = "OK"
         private const val FINISH_EXAM_DIALOG_MESSAGE = "Bạn có muốn kết thúc bài thi này không?"
         private const val FINISH_EXAM_YES_BUTTON = "Có"
         private const val FINISH_EXAM_NO_BUTTON = "Không"
+    }
+
+    private fun isUsingNightModeResources(): Boolean {
+        return when (resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_YES -> true
+            Configuration.UI_MODE_NIGHT_NO -> false
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> false
+            else -> false
+        }
     }
 }

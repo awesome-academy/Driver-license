@@ -1,5 +1,6 @@
 package com.nguyennhatminh614.motobikedriverlicenseapp.screen.tiphighscores
 
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.nguyennhatminh614.motobikedriverlicenseapp.databinding.FragmentTipHighScoreBinding
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.base.BaseFragment
@@ -19,12 +20,16 @@ class TipHighScoreFragment :
 
     override fun initData() {
         viewBinding.recyclerViewTipsHighScore.adapter = adapter
+        viewBinding.recyclerViewTipsHighScore.isVisible = adapter.currentList.isEmpty().not()
+        viewBinding.layoutVisibleWhenDataIsEmpty.root.isVisible = adapter.currentList.isEmpty()
     }
 
     override fun bindData() {
         lifecycleScope.launch {
             viewModel.listTipsHighScore.observe(viewLifecycleOwner) {
                 adapter.submitList(it)
+                viewBinding.recyclerViewTipsHighScore.isVisible = adapter.currentList.isEmpty().not()
+                viewBinding.layoutVisibleWhenDataIsEmpty.root.isVisible = adapter.currentList.isEmpty()
             }
         }
     }

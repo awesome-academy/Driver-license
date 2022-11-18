@@ -2,21 +2,26 @@ package com.nguyennhatminh614.motobikedriverlicenseapp.screen.exam
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.Exam
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.ExamState
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.QuestionOptions
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.Questions
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.StateQuestionOption
+import com.nguyennhatminh614.motobikedriverlicenseapp.data.model.WrongAnswerObject
 import com.nguyennhatminh614.motobikedriverlicenseapp.data.repository.ExamRepository
+import com.nguyennhatminh614.motobikedriverlicenseapp.data.repository.WrongAnswerRepository
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.CountDownInstance
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.base.BaseViewModel
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.constant.AppConstant
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.constant.AppConstant.FIRST_INDEX
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.interfaces.IResponseListener
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class ExamViewModel(
     private val examRepository: ExamRepository,
+    private val wrongAnswerRepository: WrongAnswerRepository,
 ) : BaseViewModel() {
 
     private val _listExam = MutableLiveData<MutableList<Exam>>()
@@ -116,6 +121,13 @@ class ExamViewModel(
                         if (exam.listQuestions[index].isFailedTestWhenWrong) {
                             isWrongTheQuestionThatFailedTestImmediately = true
                         }
+
+                        wrongAnswerRepository.insertNewWrongAnswerQuestion(
+                            WrongAnswerObject(
+                                exam.listQuestions[index].id,
+                                System.currentTimeMillis(),
+                            )
+                        )
                     }
                     index++
                 }
@@ -180,6 +192,19 @@ class ExamViewModel(
         questions.filter {
             return@filter it.questionType.lowercase() == key.lowercase()
         }.shuffled().take(takeAmount)
+
+    fun saveCurrentExamState() {
+        viewModelScope.launch {
+            _listExam.value?.get(_currentExamPosition.value
+                ?: AppConstant.NONE_POSITION)?.let {
+                examRepository.updateExam(it)
+                CountDownInstance.cancelCountDown()
+                _currentExamQuestionPosition.postValue(FIRST_INDEX)
+                _currentExamPosition.postValue(AppConstant.NONE_POSITION)
+                _currentExamQuestionPosition.postValue(AppConstant.NONE_POSITION)
+            }
+        }
+    }
 
     companion object {
         const val NUMBERS_OF_MUST_NOT_WRONG_ANSWER = 5
