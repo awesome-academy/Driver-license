@@ -29,8 +29,7 @@ val apiModule = module {
 }
 
 val networkModule = module {
-    single { provideNetworkObserver(androidContext())  }
-
+    single { provideNetworkObserver(androidContext()) }
 }
 
 fun provideNetworkObserver(context: Context) =

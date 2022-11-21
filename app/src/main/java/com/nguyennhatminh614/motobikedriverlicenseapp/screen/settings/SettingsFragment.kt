@@ -1,9 +1,7 @@
 package com.nguyennhatminh614.motobikedriverlicenseapp.screen.settings
 
-import android.content.Context.MODE_PRIVATE
 import com.nguyennhatminh614.motobikedriverlicenseapp.databinding.FragmentSettingsBinding
 import com.nguyennhatminh614.motobikedriverlicenseapp.utils.base.BaseFragment
-import com.nguyennhatminh614.motobikedriverlicenseapp.utils.constant.AppConstant
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsBinding::inflate) {
@@ -15,7 +13,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     }
 
     override fun handleEvent() {
-        viewBinding.switchDarkMode.setOnClickListener {
+        viewBinding.switchDarkMode.setOnCheckedChangeListener { compoundButton, bool ->
             if (viewBinding.switchDarkMode.isChecked.not()) {
                 viewModel.turnOffDarkMode()
             } else {

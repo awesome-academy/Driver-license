@@ -28,7 +28,17 @@
                 android:layout_marginEnd="@dimen/dp_10"
                 android:background="@color/transparent"
                 android:text="@string/button_finish_exam_text"
-                android:visibility="invisible"/>
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/button_reset_study"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:background="@color/transparent"
+                android:text="@string/button_reset"
+                android:visibility="gone"/>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 

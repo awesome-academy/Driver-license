@@ -12,4 +12,11 @@
         android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_traffic_sign_layout" />
+
+    <include
+        android:id="@+id/layout_visible_when_data_is_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/fragment_layout_not_found_data"
+        android:visibility="invisible"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
